@@ -25,7 +25,5 @@ echo "---> Installing application source..."
 cp -Rf /tmp/src/. ./
 
 echo "---> Building application from source..."
-echo "---> Start yum installs..."
-RUN yum install -y php php-mbstring php-json php-mysqlnd php-xml php-pdo && yum clean all -y
 
 # TODO: Add build steps for your application, eg npm install, bundle install, pip install, etc.

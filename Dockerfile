@@ -1,5 +1,5 @@
 # Pull the RHEL 8 httpd-24 base image
-FROM registry.redhat.io/rhel8/httpd-24
+FROM registry.redhat.io/rhel8/php-73
 
 LABEL maintainer="Jaime Magiera <jaimelm@umich.edu>"
 LABEL io.k8s.description="Platform for building Omeka-S Instances" \
@@ -9,9 +9,6 @@ LABEL io.k8s.description="Platform for building Omeka-S Instances" \
 
 # Define the BUILDER_VERSION environmental variable
 ENV BUILDER_VERSION 1.0
-
-# Install the required software
-RUN yum install -y php php-mbstring php-json php-mysqlnd php-xml php-pdo
 
 # Copy the source code
 COPY ./<builder_folder>/ /opt/app-root/
