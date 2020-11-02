@@ -10,6 +10,9 @@ LABEL io.k8s.description="Platform for building Omeka-S Instances" \
 # Define the BUILDER_VERSION environmental variable
 ENV BUILDER_VERSION 1.0
 
+# Install the required software
+RUN yum install -y php php-mbstring php-json php-mysqlnd php-xml php-pdo
+
 # Copy the source code
 COPY ./<builder_folder>/ /opt/app-root/
 
