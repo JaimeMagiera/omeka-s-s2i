@@ -1,4 +1,4 @@
-IMAGE_NAME = httpd-24
+IMAGE_NAME = omeka-s-rhel8 
 
 .PHONY: build
 build:
