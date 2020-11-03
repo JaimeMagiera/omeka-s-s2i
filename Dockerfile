@@ -1,5 +1,5 @@
 # Pull the RHEL 8 httpd-24 base image
-FROM registry.redhat.io/rhel8/php-73
+FROM ubi8/php-74
 
 LABEL maintainer="Jaime Magiera <jaimelm@umich.edu>"
 LABEL io.k8s.description="Platform for building Omeka-S Instances" \
