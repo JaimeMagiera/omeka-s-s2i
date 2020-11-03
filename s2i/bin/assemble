@@ -21,6 +21,8 @@ if [ "$(ls /tmp/artifacts/ 2>/dev/null)" ]; then
   shopt -u dotglob
 fi
 
+echo "************************ THiS IS A TEST ************************"
+
 echo "---> Installing application source..."
 cp -Rf /tmp/src/. ./
 
