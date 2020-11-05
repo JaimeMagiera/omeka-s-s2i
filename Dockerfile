@@ -1,26 +1,38 @@
-# Pull the RHEL 8 httpd-24 base image
-FROM ubi8/php-74
+# omeka-s-rhel8
+FROM ubi8/php-73 
 
+# TODO: Put the maintainer name in the image metadata
 LABEL maintainer="Jaime Magiera <jaimelm@umich.edu>"
-LABEL io.k8s.description="Platform for building Omeka-S Instances" \
-      io.k8s.display-name="Builder for Omeka-S Instances" \
-      io.openshift.expose-services="8080:http" \
-      io.openshift.tags="builder,Omeka-S"
 
-# Define the BUILDER_VERSION environmental variable
+# TODO: Rename the builder environment variable to inform users about application you provide them
 ENV BUILDER_VERSION 1.0
 
-# Copy the source code
-COPY ./<builder_folder>/ /opt/app-root/
+# TODO: Set labels used in OpenShift to describe the builder image
+LABEL io.k8s.description="Platform for building omeka-s" \
+      io.k8s.display-name="builder Omeka-s 1.0" \
+      io.openshift.expose-services="8080:http" \
+      io.openshift.tags="builder,omeka, jaimelm"
 
-# Copy the s2i scripts
+# TODO: Install required packages here:
+USER root
+RUN yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-$(rpm -E '%{rhel}').noarch.rpm
+RUN yum install -y GraphicsMagick && yum clean all -y
+
+# TODO (optional): Copy the builder files into /opt/app-root
+#COPY ./test/test-app/ /opt/app-root/
+
+# TODO: Copy the S2I scripts to /usr/libexec/s2i, since openshift/base-centos7 image
+# sets io.openshift.s2i.scripts-url label that way, or update that label
 COPY ./s2i/bin/ /usr/libexec/s2i
 
-# Set the ownership of the application root
+# TODO: Drop the root user and make the content of /opt/app-root owned by user 1001
 RUN chown -R 1001:1001 /opt/app-root
 
-# Change to the 1001 (This is ignored in OpenShift)
+# This default user is created in the openshift/base-centos7 image
 USER 1001
 
-# Output the usage script to finish the builder build 
+# TODO: Set the default port for applications built using this image
+EXPOSE 8080
+
+# TODO: Set the default CMD for the image
 CMD ["/usr/libexec/s2i/usage"]
