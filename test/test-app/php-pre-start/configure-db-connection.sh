@@ -7,9 +7,9 @@
 # ;unix_socket = 
 # ;log_path = 
 
-
-echo "user = ${db_user}" > /opt/app-root/src/omeka-s/config
-echo "password = ${db_password}" >> /opt/app-root/src/omeka-s/config
-echo "dbname = ${db_name}" >> /opt/app-root/src/omeka-s/config
-echo "host = ${db_host}" >> /opt/app-root/src/omeka-s/config
+CONFIG_FILE=/opt/app-root/src/omeka-s/config/database.ini
+echo "user = ${db_user}" > ${CONFIG_FILE}
+echo "password = ${db_password}" >> ${CONFIG_FILE}
+echo "dbname = ${db_name}" >> ${CONFIG_FILE}
+echo "host = ${db_host}" >> ${CONFIG_FILE}
 
